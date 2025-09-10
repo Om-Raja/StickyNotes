@@ -1,5 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import {removeNote} from "../redux/notesSlice.js"
 import toast from "react-hot-toast";
 import { format } from "date-fns";
 import { AiFillEye, AiFillEdit } from "react-icons/ai";
@@ -8,6 +10,8 @@ import { MdDelete } from "react-icons/md";
 import { FaShareAlt } from "react-icons/fa";
 
 function Note() {
+  const dispatch = useDispatch();
+
   function capitalize(str) {
     if (!str) return "";
     return str[0].toUpperCase() + str.slice(1);
@@ -15,7 +19,13 @@ function Note() {
 
   function handleCopy(text) {
     //returns a promise
-    navigator.clipboard.writeText(text).then(() => toast.success("Copied"));
+    navigator.clipboard.writeText(text).then(() => toast.success("Copied")).catch((err)=>{
+      toast.error(`Couldn't copy because ${err}`);
+    });
+  }
+
+  function handleDelete(_id, title){
+    dispatch(removeNote({_id, title}));
   }
 
   const notes = useSelector((state) => state.notes.notes);
@@ -62,7 +72,7 @@ function Note() {
             </button>
 
             {/*Delete */}
-            <button className="bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-[var(--color-secondary)] hover:text-[var(--color-primary)] transform hover:scale-110 transition-transform duration-200 ease-in-out cursor-pointer">
+            <button className="bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-[var(--color-secondary)] hover:text-[var(--color-primary)] transform hover:scale-110 transition-transform duration-200 ease-in-out cursor-pointer" onClick={()=>{handleDelete(note._id, note.title)}}>
               <MdDelete />
             </button>
 

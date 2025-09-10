@@ -33,14 +33,14 @@ export const notesSlice = createSlice({
       }
     },
     removeNote: (state, action) => {
-      const _id = action.payload;
+      const {_id, title} = action.payload;
       const index = state.notes.findIndex(item => item._id === _id);
       if(index >= 0){
         state.notes.splice(index, 1);
         localStorage.setItem("notes", JSON.stringify(state.notes));
-        toast("Note deleted");
+        toast.success(`Deleted ${title}`);
       }else{
-        toast("Note is already deleted or invalid request.");
+        toast.error("Note is already deleted or invalid request.");
         return;
       }
     },
