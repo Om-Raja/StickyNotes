@@ -1,15 +1,25 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import toast from "react-hot-toast"
 import { format } from "date-fns";
 import { AiFillEye, AiFillEdit } from "react-icons/ai";
 import { IoIosCopy } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 import { FaShareAlt } from "react-icons/fa";
 
+
 function Note() {
   function capitalize(str) {
     if (!str) return "";
     return str[0].toUpperCase() + str.slice(1);
+  }
+
+  function handleCopy(text){
+    //returns a promise
+    navigator.clipboard.writeText(text).then(
+      ()=>toast.success("Copied")
+    )
+
   }
 
   const notes = useSelector((state) => state.notes.notes);
@@ -29,19 +39,28 @@ function Note() {
           <p className="mt-1 mb-2">{capitalize(note.content)}</p>
 
           <div className="flex flex-row justify-evenly mt-3 mb-2">
-            <button className="bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-[var(--color-secondary)] hover:text-[var(--color-primary)] transform hover:scale-110 transition-transform duration-200 ease-in-out">
+            {/* view */}
+            <button className="bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-[var(--color-secondary)] hover:text-[var(--color-primary)] transform hover:scale-110 transition-transform duration-200 ease-in-out cursor-pointer">
               <AiFillEye />
             </button>
-            <button className="bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-[var(--color-secondary)] hover:text-[var(--color-primary)] transform hover:scale-110 transition-transform duration-200 ease-in-out">
+
+            {/* Edit */}
+            <button className="bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-[var(--color-secondary)] hover:text-[var(--color-primary)] transform hover:scale-110 transition-transform duration-200 ease-in-out cursor-pointer">
               <AiFillEdit />
             </button>
-            <button className="bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-[var(--color-secondary)] hover:text-[var(--color-primary)] transform hover:scale-110 transition-transform duration-200 ease-in-out">
+
+            {/*copy */}
+            <button className="bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-[var(--color-secondary)] hover:text-[var(--color-primary)] transform hover:scale-110 transition-transform duration-200 ease-in-out cursor-pointer" onClick={() => handleCopy(capitalize(note.content))}>
               <IoIosCopy />
             </button>
-            <button className="bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-[var(--color-secondary)] hover:text-[var(--color-primary)] transform hover:scale-110 transition-transform duration-200 ease-in-out">
+
+            {/*Delete */}
+            <button className="bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-[var(--color-secondary)] hover:text-[var(--color-primary)] transform hover:scale-110 transition-transform duration-200 ease-in-out cursor-pointer">
               <MdDelete />
             </button>
-            <button className="bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-[var(--color-secondary)] hover:text-[var(--color-primary)] transform hover:scale-110 transition-transform duration-200 ease-in-out">
+
+            {/*Share */}
+            <button className="bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-[var(--color-secondary)] hover:text-[var(--color-primary)] transform hover:scale-110 transition-transform duration-200 ease-in-out cursor-pointer">
               <FaShareAlt />
             </button>
           </div>
