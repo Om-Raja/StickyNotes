@@ -12,7 +12,7 @@ export const notesSlice = createSlice({
   reducers: {
     addNote: (state, action) => {
       const note = action.payload;
-      state.notes.push(note);
+      state.notes.unshift(note);
       localStorage.setItem("notes", JSON.stringify(state.notes));
       toast.success("Note added successfully");
     },
