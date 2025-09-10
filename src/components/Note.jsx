@@ -48,7 +48,7 @@ function Note() {
           </div>
 
           {/* ---- content ----  */}
-          <p className="mt-1 mb-2">{capitalize(note.content)}</p>
+          <p className="mt-1 mb-2">{note.content}</p>
 
 
           {/* ---- buttons ---- */}
@@ -66,7 +66,7 @@ function Note() {
             {/*copy */}
             <button
               className="bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-[var(--color-secondary)] hover:text-[var(--color-primary)] transform hover:scale-110 transition-transform duration-200 ease-in-out cursor-pointer"
-              onClick={() => handleCopy(capitalize(note.content))}
+              onClick={() => handleCopy(note.content)}
             >
               <IoIosCopy />
             </button>
