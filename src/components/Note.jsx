@@ -30,7 +30,7 @@ function Note() {
 
   const notes = useSelector((state) => state.notes.notes);
   return (
-    <div className="mt-4 p-2">
+    <div className="mt-4 md:p-2">
       {notes.map((note) => (
         <div
           key={note._id}
@@ -39,10 +39,10 @@ function Note() {
 
           {/* ---- title and date ---- */}
           <div className="mt-1 flex flex-row justify-between">
-            <div className="md:ml-4 sm:ml-1 font-semibold text-lg">
+            <div className="md:ml-4 ml-1 mb-2 md:mb-1 font-semibold text-lg">
               {capitalize(note.title)}
             </div>
-            <span className="md:mr-4 sm:mr-1 text-[var(--color-secondary)]">
+            <span className="md:mr-4 mr-1 text-[var(--color-secondary)] text-xs md:text-[1rem]">
               {format(note.createdAt, "dd MMM yy, hh:mm a")}
             </span>
           </div>
