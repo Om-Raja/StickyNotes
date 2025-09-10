@@ -1,6 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { format } from "date-fns";
+import { AiFillEye, AiFillEdit } from "react-icons/ai";
+import { IoIosCopy } from "react-icons/io";
+import { MdDelete } from "react-icons/md";
+import { FaShareAlt } from "react-icons/fa";
 
 function Note() {
   function capitalize(str) {
@@ -26,19 +30,19 @@ function Note() {
 
           <div className="flex flex-row justify-evenly mt-3 mb-2">
             <button className="bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-[var(--color-secondary)] hover:text-[var(--color-primary)] transform hover:scale-110 transition-transform duration-200 ease-in-out">
-              View
+              <AiFillEye />
             </button>
             <button className="bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-[var(--color-secondary)] hover:text-[var(--color-primary)] transform hover:scale-110 transition-transform duration-200 ease-in-out">
-              Edit
+              <AiFillEdit />
             </button>
             <button className="bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-[var(--color-secondary)] hover:text-[var(--color-primary)] transform hover:scale-110 transition-transform duration-200 ease-in-out">
-              Copy
+              <IoIosCopy />
             </button>
             <button className="bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-[var(--color-secondary)] hover:text-[var(--color-primary)] transform hover:scale-110 transition-transform duration-200 ease-in-out">
-              Delete
+              <MdDelete />
             </button>
             <button className="bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-[var(--color-secondary)] hover:text-[var(--color-primary)] transform hover:scale-110 transition-transform duration-200 ease-in-out">
-              Share
+              <FaShareAlt />
             </button>
           </div>
         </div>
