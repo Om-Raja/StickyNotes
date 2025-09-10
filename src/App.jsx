@@ -23,7 +23,7 @@ function App() {
         </div>
       },
       {
-        path: '/notes/:id',
+        path: '/notes/:noteId',
         element: <div>
           <Navbar />
           <ViewNote />
