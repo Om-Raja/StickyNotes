@@ -1,7 +1,7 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {removeNote} from "../redux/notesSlice.js"
+import {Link} from "react-router-dom"
 import toast from "react-hot-toast";
 import { format } from "date-fns";
 import { AiFillEye, AiFillEdit } from "react-icons/ai";
@@ -59,9 +59,9 @@ function Note() {
             </button>
 
             {/* Edit */}
-            <button className="bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-[var(--color-secondary)] hover:text-[var(--color-primary)] transform hover:scale-110 transition-transform duration-200 ease-in-out cursor-pointer">
+            <Link to={`/?noteId=${note._id}`} className="bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-[var(--color-secondary)] hover:text-[var(--color-primary)] transform hover:scale-110 transition-transform duration-200 ease-in-out cursor-pointer">
               <AiFillEdit />
-            </button>
+            </Link>
 
             {/*copy */}
             <button
