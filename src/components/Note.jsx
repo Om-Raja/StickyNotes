@@ -58,7 +58,7 @@ function Note() {
 
         <Link
           to="/"
-          className="bg-[var(--color-primary)] text-[var(--color-textdark)] w-0.5s rounded-lg p-3 mt-[50vh] md:mt-6 lg:mt-6 text-[1rem] sm:w-[50%] sm:ml-[24%]"
+          className="bg-[var(--color-primary)] text-[var(--color-textdark)] w-0.5s rounded-lg p-3 mt-48 md:mt-6 text-[1rem] sm:w-[50%] sm:ml-[24%]"
         >
           Add a note
         </Link>
