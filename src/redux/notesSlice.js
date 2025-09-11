@@ -19,12 +19,12 @@ export const notesSlice = createSlice({
     updateNote: (state, action) => {
       const updatedNote = action.payload;
       const index = state.notes.findIndex(
-        (item) => item._id === updateNote._id,
+        (item) => item._id === updatedNote._id,
       );
 
       //index = -1 if index is not found
       if(index >= 0){
-        state.notes[index] = updateNote;
+        state.notes[index] = updatedNote;
         localStorage.setItem("notes", JSON.stringify(state.notes));
         toast.success("Note updated");
       }else{
