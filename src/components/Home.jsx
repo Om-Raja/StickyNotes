@@ -43,6 +43,10 @@ function Home() {
     setParams({});
   }
 
+  function handleKeyDown(event){
+    if(event.key === 'Enter') handleClick();
+  }
+
   return (
     <div className="flex flex-col justify-center content-center mt-4">
       <input
@@ -51,6 +55,7 @@ function Home() {
         className="p-3 rounded-xl bg-[var(--color-surface)]"
         value={title}
         onChange={(event) => setTitle(event.target.value)}
+        onKeyDown={handleKeyDown}
       />
 
       <textarea
