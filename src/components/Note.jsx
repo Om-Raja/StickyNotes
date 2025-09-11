@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeNote, resetAllNotes } from "../redux/notesSlice.js";
 import { Link } from "react-router-dom";
@@ -12,6 +12,7 @@ import { CgNotes } from "react-icons/cg";
 
 function Note() {
   const dispatch = useDispatch();
+  const [searchText, setSearchText] = useState("");
 
   function capitalize(str) {
     if (!str) return "";
@@ -65,14 +66,21 @@ function Note() {
 
   return (
     <div className="mt-4 md:p-2">
-      <button
-        className={
-          "bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-[var(--color-secondary)] hover:text-[var(--color-primary)] transform hover:scale-103 transition-transform duration-200 ease-in-out cursor-pointer relative left-[34%] md:left-[45.6%] sm:left-[42%]"
-        }
-        onClick={handleDeleteAll}
-      >
-        Delete all
-      </button>
+      
+      <div className="flex flex-row gap-1.5 p-2 m-1">
+        <input type='text' placeholder="Enter title to search..." value={searchText} onChange={(event)=>setSearchText(event.target.value)} className={"bg-[var(--color-surface)] px-2 py-1.5 rounded-md hover:bg-[var(--color-bg)] size-10 grow-7"}/>
+
+        <button
+          className={
+            "bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-red-500 hover:text-[var(--color-primary)] cursor-pointer size-10 grow-2"
+          }
+          onClick={handleDeleteAll}
+        >
+          Delete all
+        </button>
+      </div>
+
+
       {notes.map((note) => (
         <div
           key={note._id}
