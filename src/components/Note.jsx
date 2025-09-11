@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {removeNote} from "../redux/notesSlice.js"
+import {removeNote, resetAllNotes} from "../redux/notesSlice.js"
 import {Link} from "react-router-dom"
 import toast from "react-hot-toast";
 import { format } from "date-fns";
@@ -27,10 +27,14 @@ function Note() {
   function handleDelete(_id, title){
     dispatch(removeNote({_id, title}));
   }
+  function handleDeleteAll(){
+    dispatch(resetAllNotes());
+  }
 
   const notes = useSelector((state) => state.notes.notes);
   return (
     <div className="mt-4 md:p-2">
+      <button className={"bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-[var(--color-secondary)] hover:text-[var(--color-primary)] transform hover:scale-103 transition-transform duration-200 ease-in-out cursor-pointer relative left-[34%] md:left-[45.6%] sm:left-[42%]"} onClick={handleDeleteAll}>Delete all</button>
       {notes.map((note) => (
         <div
           key={note._id}

@@ -45,9 +45,13 @@ export const notesSlice = createSlice({
       }
     },
     resetAllNotes: (state) => {
+      if(state.notes.length <= 0){
+        toast.error("Empty already");
+        return;
+      }
       state.notes = []; 
       localStorage.removeItem("notes");
-      toast("Deleted all notes");
+      toast.success("Deleted all notes");
       return;
     },
   },
