@@ -43,7 +43,6 @@ function Home() {
     setParams({});
   }
 
-  // setNotes(localStorage.getItem("notes"));
   return (
     <div className="flex flex-col justify-center content-center mt-4">
       <input
