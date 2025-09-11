@@ -67,7 +67,7 @@ function Home() {
 
       <button
         onClick={handleClick}
-        className="bg-[var(--color-primary)] text-[var(--color-textdark)] w-0.5s rounded-lg p-2 mt-[57vh] md:mt-8 lg:mt-3"
+        className="bg-[var(--color-primary)] text-[var(--color-textdark)] w-0.5s rounded-lg p-2 mt-4"
       >
         {noteId ? "Update the note" : "Create note"}
       </button>
