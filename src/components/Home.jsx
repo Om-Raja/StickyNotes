@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { addNote, updateNote } from "../redux/notesSlice";
+import toast from "react-hot-toast";
 
 function Home() {
   const [title, setTitle] = useState("");
@@ -26,6 +27,12 @@ function Home() {
       _id: noteId || Date.now().toString(36),
       createdAt: new Date().toISOString(),
     };
+
+    //edge case
+    if(!(note.title && note.content)){
+      toast.error("Title or content cannot be empty.");
+      return;
+    }
 
     if (noteId) dispatch(updateNote(note));
     else dispatch(addNote(note));
