@@ -38,6 +38,8 @@ function Note() {
 
   const notes = useSelector((state) => state.notes.notes);
 
+  const filteredNotes = notes.filter((note) => note.title.toLowerCase().includes(searchText.toLowerCase()));
+
   //UI when list is empty
   if (!notes.length) {
     return (
@@ -68,11 +70,11 @@ function Note() {
     <div className="mt-4 md:p-2">
       
       <div className="flex flex-row gap-1.5 p-2 m-1">
-        <input type='text' placeholder="Enter title to search..." value={searchText} onChange={(event)=>setSearchText(event.target.value)} className={"bg-[var(--color-surface)] px-2 py-1.5 rounded-md hover:bg-[var(--color-bg)] size-10 grow-7"}/>
+        <input type='text' placeholder="Enter title to search..." value={searchText} onChange={(event)=>setSearchText(event.target.value)} className={"bg-[var(--color-surface)] px-2 py-1.5 rounded-md hover:bg-[var(--color-bg)] size-10 grow-7 hover:border transition-bg duration-300"}/>
 
         <button
           className={
-            "bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-red-500 hover:text-[var(--color-primary)] cursor-pointer size-10 grow-2"
+            "bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-red-500 hover:text-[var(--color-primary)] cursor-pointer size-10 grow-2 transition-bg duration-200"
           }
           onClick={handleDeleteAll}
         >
@@ -81,7 +83,7 @@ function Note() {
       </div>
 
 
-      {notes.map((note) => (
+      {filteredNotes.map((note) => (
         <div
           key={note._id}
           className="border m-3 p-2 rounded-md bg-[var(--color-surface)]"
@@ -102,21 +104,21 @@ function Note() {
           {/* ---- buttons ---- */}
           <div className="flex flex-row justify-evenly mt-3 mb-2">
             {/* view */}
-            <button className="bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-[var(--color-secondary)] hover:text-[var(--color-primary)] transform hover:scale-110 transition-transform duration-200 ease-in-out cursor-pointer">
+            <button className="bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-[var(--color-secondary)] hover:text-[var(--color-primary)] transform hover:scale-110 transition-all duration-200 ease-in-out cursor-pointer">
               <AiFillEye />
             </button>
 
             {/* Edit */}
             <Link
               to={`/?noteId=${note._id}`}
-              className="bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-[var(--color-secondary)] hover:text-[var(--color-primary)] transform hover:scale-110 transition-transform duration-200 ease-in-out cursor-pointer"
+              className="bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-[var(--color-secondary)] hover:text-[var(--color-primary)] transform hover:scale-110 transition-all duration-200 ease-in-out cursor-pointer"
             >
               <AiFillEdit />
             </Link>
 
             {/*copy */}
             <button
-              className="bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-[var(--color-secondary)] hover:text-[var(--color-primary)] transform hover:scale-110 transition-transform duration-200 ease-in-out cursor-pointer"
+              className="bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-[var(--color-secondary)] hover:text-[var(--color-primary)] transform hover:scale-110 transition-all duration-200 ease-in-out cursor-pointer"
               onClick={() => handleCopy(note.content)}
             >
               <IoIosCopy />
@@ -124,7 +126,7 @@ function Note() {
 
             {/*Delete */}
             <button
-              className="bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-[var(--color-secondary)] hover:text-[var(--color-primary)] transform hover:scale-110 transition-transform duration-200 ease-in-out cursor-pointer"
+              className="bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-[var(--color-secondary)] hover:text-[var(--color-primary)] transform hover:scale-110 transition-all duration-200 ease-in-out cursor-pointer"
               onClick={() => {
                 handleDelete(note._id, note.title);
               }}
@@ -133,7 +135,7 @@ function Note() {
             </button>
 
             {/*Share */}
-            <button className="bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-[var(--color-secondary)] hover:text-[var(--color-primary)] transform hover:scale-110 transition-transform duration-200 ease-in-out cursor-pointer">
+            <button className="bg-[var(--color-primary)] text-[var(--color-textdark)] px-2 py-1.5 rounded-md hover:bg-[var(--color-secondary)] hover:text-[var(--color-primary)] transform hover:scale-110 transition-all duration-200 ease-in-out cursor-pointer">
               <FaShareAlt />
             </button>
           </div>
